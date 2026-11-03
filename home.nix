@@ -25,7 +25,7 @@
     
     unzip
     
-    vim
+    neovim
 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
@@ -33,9 +33,23 @@
   ];
 
 
-};
 
-  nixpkgs.config.allowUnfree = true;
+    programs.git = {
+      enable = true;
+      settings = {
+      user = {
+	name = "Dymon1403";
+	email = "dymaroxer1403@gmail.com"; 
+      };
+      url."git@github.com:".insteadOf = "https://github.com/";
+      init.defaultBranch = "main";
+    };
+  };
+
+
+
+
+
 
   programs.home-manager.enable = true;
 }

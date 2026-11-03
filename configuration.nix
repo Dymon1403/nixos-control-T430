@@ -9,12 +9,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ============================================
-  # Network
+  # network
   # ============================================
 
   networking.hostName = "Serverdmitrj";
-
   networking.networkmanager.enable = true;
+
+  # ============================================
+  # Tailscale
+  # ============================================
+
+  services.tailscale.enable = true;
 
   # ============================================
   # Ssh
@@ -23,18 +28,35 @@
   services.openssh.enable = true;
 
   # ============================================
+  # Linger
+  # ============================================
+  
+  users.users.server.linger = true;
+
+  # ============================================
+  # TLP
+  # ============================================
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      STOP_CHARGE_THRESH_BAT0 = 70;
+      START_CHARGE_THRESH_BAT0 = 60;
+    };
+  };
+
+  services.power-profiles-daemon.enable = false;
+
+  # ============================================
   # Bash_Aliases
   # ============================================
 
   environment.shellAliases = {
 
-            ls = "ls --color=auto";
-            grep = "grep --color=auto";
-            bt = "bluetoothctl";
             ff = "fastfetch";
             cm = "cmus";
-            nn = "nvim ~/dot/configuration.nix";
-            zap = "./zapret.sh";
+            nn = "nvim ~/main/configuration.nix";
+            ss = "sudo nixos-rebuild switch --flake .#server";
            };
 
   # ============================================
@@ -47,8 +69,6 @@
   };
 
   virtualisation.docker.enable = true;
-
-
 
 
   # ============================================
@@ -96,8 +116,19 @@
   };
 
   # ============================================
+  # Monitor_ignore
+  # ============================================
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+  };
+
+  
+  # ============================================
   # Firmware
   # ============================================
+
 
   hardware.enableRedistributableFirmware = true;
 
@@ -119,6 +150,38 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 
+      22
+      8096
+      9091
+      3000
+      4533
+      25565
+      1443
+    ];
+    allowedUDPPorts = [
+      25565
+    ];
+  };
+
+
+
+
+  # ============================================
+  # Appimage_rule
+  # ============================================
+
+  nixpkgs.config.allowUnfree = true;
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
 
   # ============================================
   # NixOS version
