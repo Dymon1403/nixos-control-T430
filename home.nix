@@ -12,7 +12,9 @@
     htop
     
     openssh
-    
+
+    pingu
+
     curl
     git
     
