@@ -34,8 +34,6 @@
 
   ];
 
-
-
     programs.git = {
       enable = true;
       settings = {
@@ -47,11 +45,6 @@
       init.defaultBranch = "main";
     };
   };
-
-
-
-
-
 
   programs.home-manager.enable = true;
 }
