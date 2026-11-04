@@ -48,18 +48,6 @@
   services.power-profiles-daemon.enable = false;
 
   # ============================================
-  # Bash_Aliases
-  # ============================================
-
-  environment.shellAliases = {
-
-            ff = "fastfetch";
-            cm = "cmus";
-            nn = "nvim ~/main/configuration.nix";
-            ss = "sudo nixos-rebuild switch --flake .#server";
-           };
-
-  # ============================================
   # Docker 
   # ============================================
 

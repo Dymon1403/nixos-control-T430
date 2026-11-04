@@ -46,5 +46,38 @@
     };
   };
 
+
+   programs.bash = {
+    enable = true;
+
+    shellAliases = {
+
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+      ff = "fastfetch";
+      ss = "sudo nixos-rebuild switch --flake .#server";
+    };
+
+    initExtra = ''
+    export EDITOR="nvim";
+    export TERMINAL="alacritty"
+    '';
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   programs.home-manager.enable = true;
 }
