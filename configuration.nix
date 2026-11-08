@@ -158,40 +158,6 @@
   };
 
 
-  systemd.services.docker-night-stop = {
-    description = "Stop Docker containers for the night";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.docker}/bin/docker stop $(docker ps -q)";
-    };
-  };
-
-  systemd.timers.docker-night-stop = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "02:00";
-      Persistent = true;
-    };
-  };
-
-  systemd.services.docker-morning-start = {
-    description = "Start Docker containers in the morning";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.docker}/bin/docker start $(docker ps -aq)";
-    };
-  };
-
-  systemd.timers.docker-morning-start = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "13:00";
-      Persistent = true;
-    };
-  };
-
-
-
   # ============================================
   # Appimage_rule
   # ============================================
