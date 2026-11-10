@@ -32,10 +32,6 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
 
-      (pkgs.python3.withPackages (ps: with ps; [
-	watchdog
-      ]))
-
   ];
 
     programs.git = {
@@ -82,32 +78,6 @@
     enable = true;
     enableBashIntegration = true;
   };
-
-
-
-
-  home.file.".local/bin/anime-sync.py".source = ./scripts/sync.py;
-  home.file.".local/bin/anime-sync.py".executable = true;
-
-  systemd.user.services.anime-sync = {
-    Unit = {
-      Description = "Sync anime from T430 to Compaq";
-      After = [ "network.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.python3.withPackages (ps: [ ps.watchdog ])}/bin/python3 %h/.local/bin/anime-sync.py";
-      Restart = "on-failure";
-      RestartSec = 10;
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
-
-
-
-
-
 
   programs.home-manager.enable = true;
 }
