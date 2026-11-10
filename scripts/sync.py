@@ -12,7 +12,7 @@ class AnimeHandler(FileSystemEventHandler):
             filepath = event.src_path
             filename = filepath.split('/')[-1]
             
-            time.sleep(5) 
+            time.sleep(600) 
             
             try:
                 subprocess.run(["scp", filepath, REMOTE], check=True)
