@@ -56,6 +56,7 @@
       grep = "grep --color=auto";
       ff = "fastfetch";
       ss = "sudo nixos-rebuild switch --flake .#server";
+      pushall = "git push origin main && git push forgejo main";
     };
 
     initExtra = ''
