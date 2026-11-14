@@ -17,8 +17,11 @@
 
     curl
     git
-    
+
+    ffmpeg
+
     wget
+
     
     gcc
     gnumake
