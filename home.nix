@@ -22,6 +22,8 @@
 
     wget
 
+
+    nftables
     openssl
 
     gcc
