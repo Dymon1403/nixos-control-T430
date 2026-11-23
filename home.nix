@@ -22,7 +22,8 @@
 
     wget
 
-    
+    openssl
+
     gcc
     gnumake
     
